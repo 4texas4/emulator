@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Number to Open Link</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            margin-top: 10px;
+            text-align: center;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background: #ff6b6b;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff4f4f;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter a number below to open that emulator</h2>
+    <div class="container">
+        <input type="number" id="numberInput" placeholder="Enter number"><br>
+        <button onclick="openLink()">Enter</button>
+    </div>
+
+    <script>
+        function openLink() {
+            let number = document.getElementById("numberInput").value;
+            if (number) {
+                let baseUrl = "https://stream.uptoplay.net/osessionx80/#/client/REVGQVVMVABjAGRlZmF1bHQ=?username=guest01&password=server0101";
+                let newUrl = baseUrl.replace("80", number);
+                window.open(newUrl, "_blank");
+            } else {
+                alert("Please enter a number.");
+            }
+        }
+    </script>
+</body>
+</html>
