@@ -3,22 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Android Emulators</title>
+    <title>Change Number in URL</title>
+    <style>
+        /* Basic page styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Container for centering elements */
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 2px solid #ccc;
+            width: 100%;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Alert style */
+        .alert {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
 <body>
 
-    <h1>Enter a Number</h1>
-    <input type="number" id="numberInput" placeholder="Enter a number">
-    <button onclick="changeNumber()">Enter</button>
+    <div class="container">
+        <h1>Enter a Number</h1>
+        <input type="number" id="numberInput" placeholder="Enter a number">
+        <button onclick="changeNumber()">Enter</button>
+        <p id="alertMessage" class="alert"></p>
+    </div>
 
     <script>
         function changeNumber() {
             const numberInput = document.getElementById("numberInput").value;
+            const alertMessage = document.getElementById("alertMessage");
+
             if (numberInput) {
                 const url = `https://stream.myandroid.org/osessionx${numberInput}/#/client/REVGQVVMVABjAGRlZmF1bHQ=?username=guest01&password=server0101`;
                 window.location.href = url; // Navigate to the new URL
             } else {
-                alert("Please enter a number.");
+                alertMessage.textContent = "Please enter a number.";
             }
         }
     </script>
