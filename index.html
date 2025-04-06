@@ -1,45 +1,129 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choose a Server</title>
-  <style>
-    body {
-      background-color: white;
-      font-family: Arial, sans-serif;
-      color: black;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      margin-bottom: 30px;
-    }
-    .game-btn {
-      display: block;
-      width: 100vw;
-      padding: 8px 24px;
-      background: #fffcfc;
-      color: black;
-      border-radius: 7px;
-      font-family: "Comic Sans MS", "Comic Sans", sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      cursor: pointer;
-      box-sizing: border-box;
-      text-align: center;
-      margin: 10px auto;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 100vw;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Emulators</title>
+    <style>
+        /* Basic page styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Container for centering elements */
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Style for input fields */
+        input[type="number"], select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+            width: 48%; /* Set width to be 48% so they are equal */
+        }
+
+        /* Layout for input and dropdown side by side */
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        /* Adjust button styling */
+        button {
+            background-color: #007bbf;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Alert style */
+        .alert {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
 <body>
-  <h1>Choose a Server</h1>
-  <a class="game-btn" onclick="window.open('', '_blank').document.write(`<iframe src='https://4texas4.github.io/emulator/1' style='border:0;width:100vw;height:100vh;position:fixed;inset:0;margin:0'></iframe>`)">Server 1</a>
-  <a class="game-btn" onclick="window.open('', '_blank').document.write(`<iframe src='https://4texas4.github.io/emulator/2' style='border:0;width:100vw;height:100vh;position:fixed;inset:0;margin:0'></iframe>`)">Server 2</a>
+
+    <div class="container">
+        <h1>Select Server</h1>
+        
+        <!-- Container for the dropdown and input side by side -->
+        <div class="input-container">
+            <!-- Dropdown for selecting server -->
+            <select id="serverSelect" onchange="changeServer()">
+                <option value="server1">Server 1</option>
+                <option value="server2">Server 2</option>
+            </select>
+
+            <!-- Input field for the number -->
+            <input type="number" id="numberInput" placeholder="Enter a number">
+        </div>
+
+        <!-- Button to open emulator -->
+        <button onclick="changeNumber()">Enter</button>
+        
+        <!-- Alert message for invalid input -->
+        <p id="alertMessage" class="alert"></p>
+    </div>
+
+    <script>
+        function changeServer() {
+            // The server text is already in the dropdown, no need for additional content.
+        }
+
+        function changeNumber() {
+            const numberInput = document.getElementById("numberInput").value;
+            const alertMessage = document.getElementById("alertMessage");
+            const serverSelect = document.getElementById("serverSelect").value;
+
+            if (numberInput) {
+                const url = serverSelect === "server1"
+                    ? `https://stream.myandroid.org/osessionx${numberInput}/#/client/REVGQVVMVABjAGRlZmF1bHQ=?username=guest01&password=server0101`
+                    : `https://stream.myandroid.org/osessionx${numberInput}/#/client/REVGQVVMVABjAGRlZmF1bHQ=?username=guest02&password=server0102`;
+
+                // Open the link in a new tab with iframe
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write(`
+                    <iframe src="${url}" width="100%" height="100%" frameborder="0"></iframe>
+                `);
+            } else {
+                alertMessage.textContent = "Please enter a number.";
+            }
+        }
+    </script>
+
 </body>
 </html>
